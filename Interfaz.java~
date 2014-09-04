@@ -1,0 +1,22 @@
+import javax.swing.*;
+import java.awt.Dimension;
+
+
+public class Interfaz extends JFrame{
+    private final JLabel nombre = new JLabel ("Nombre")	
+    public Interfaz (String titulo){
+        
+       setTitle("Reproductor MP3");
+       setSize(600,400);
+       setLocation(0,0);
+       setResizable(false);        
+       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      
+    }
+
+public static void main(String []args){
+ 
+        Interfaz ventana = new Interfaz("Reproductor MP3"); 
+        ventana.setVisible(true);				
+    }            
+}

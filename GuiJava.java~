@@ -1,0 +1,77 @@
+//librerias necesarias
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+ 
+public class GuiJava implements ActionListener{//implementando el listener de eventos
+ 
+    JButton bt1, bt2, bt3;//creando variables globales de los botones
+    JFrame jf = new JFrame("Botones con Java");//creacion de ventana con el titulo
+ 
+    public GuiJava(){//constructor de la clase
+ 
+ 
+        jf.setLayout(new FlowLayout());//Configurar como se dispondra el espacio del jframe
+        Dimension d = new Dimension();//objeto para obtener el ancho de la pantalla
+ 
+        //imagen para el boton
+        ImageIcon n = new ImageIcon("Imágenes/n.jpg");
+ 
+        //Instanciando botones con texto
+        bt1 = new JButton("Hola");
+        bt2 = new JButton("Tamaño");
+        bt3 = new JButton(n); //creamos el boton con una imagen
+ 
+        //margenes para texto en boton
+        bt1.setMargin(new Insets(3, 5, 3, 5));
+        bt2.setMargin(new Insets(1, 1, 1, 1));
+ 
+        //color de fondo del boton
+        bt1.setBackground(Color.orange);
+ 
+        //color de texto para el boton
+        bt2.setForeground(Color.blue);
+ 
+        //agregando los botones a la ventana
+        jf.add(bt1); jf.add(bt2); jf.add(bt3);
+ 
+        //añadiendo el listener a los botones para manipular los eventos del click
+        bt1.addActionListener(this);
+        bt2.addActionListener(this);
+        bt3.addActionListener(this);
+ 
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//finaliza el programa cuando se da click en la X        
+		jf.setResizable(false);//para configurar si se redimensiona la ventana
+		jf.setLocation((int) ((d.getWidth()/2)+290), 50);//para ubicar inicialmente donde se muestra la ventana (x, y)
+		jf.setSize(400, 250);//configurando tamaño de la ventana (ancho, alto)
+		jf.setVisible(true);//configurando visualización de la venta
+	    }
+	 
+    public static void main(String[] args) {
+ 
+        GuiJava gj = new GuiJava();//uso de constructor para la ventana
+    }
+ 
+    @Override
+    public void actionPerformed(ActionEvent e) {//sobreescribimos el metodo del listener
+ 
+        if(e.getActionCommand().equals("Hola")){//podemos comparar por el contenido del boton
+            JOptionPane.showMessageDialog(null, e.getActionCommand());
+        }
+        if(e.getSource()==bt2){//podemos comparar por el nombre del objeto del boton
+            jf.setExtendedState(JFrame.MAXIMIZED_BOTH);//cambiamos el tamaño de la ventana
+        }
+        if(e.getSource()==bt3){//podemos comparar por el nombre del objeto del boton
+            JOptionPane.showMessageDialog(null, "Escogiste Guiño");
+        }
+    }
+}
+
+
